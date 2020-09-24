@@ -5,7 +5,6 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
 
@@ -16,14 +15,14 @@ var numCheck = confirm("Would you like to include numbers?");
 console.log("Include Numbers: " + numCheck);
 var uppercaseCheck = confirm("Would you like to include uppercase letters?");
 console.log("Include Uppercase Letters: " + uppercaseCheck);
-
 var chosenLength = prompt("Type in the length of the password you'd like (between 8 and 128)");
 console.log("Chosen password length: " + chosenLength);
+
+// Remind user to pick a number between 8 and 128
 while (chosenLength < 8 || chosenLength > 128){
   chosenLength = prompt("Please make sure to type in a number between 8 and 128");
   console.log("Chosen password length: " + chosenLength);
 }
-
 
 // Choosing a char set based on user answers above
 var charset = "abcdefghijklmnopqrstuvwxyz";
@@ -36,17 +35,18 @@ if (numCheck == true){
 if (uppercaseCheck == true){
     charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 }
+console.log("charset to be used: " + charset);
 
 // Generate the password
-function generatePassword(chosenLength){
+function generatePassword(charset, chosenLength){
   
-  var passwordText = "";
-    for (var i = 0, n = charset.length; i < chosenLength; ++i) {
-      passwordText += charset.charAt(Math.floor(Math.random() * n));
+  var generatedpwd = "";
+    for (var i = 0; i < chosenLength; ++i) {
+      generatedpwd += charset.charAt(Math.floor(Math.random()*chosenLength));
     }
-  return passwordText;
+    console.log("Password is: " + generatedpwd);
+  return generatedpwd;
 }
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
