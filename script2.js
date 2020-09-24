@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(charset, chosenLength);
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
@@ -39,10 +39,10 @@ console.log("charset to be used: " + charset);
 
 // Generate the password
 function generatePassword(charset, chosenLength){
-  
+    console.log(charset, chosenLength);
   var generatedpwd = "";
     for (var i = 0; i < chosenLength; ++i) {
-      generatedpwd += charset.charAt(Math.floor(Math.random()*chosenLength));
+      generatedpwd += charset.charAt(Math.floor(Math.random()*charset.length));
     }
     console.log("Password is: " + generatedpwd);
   return generatedpwd;
